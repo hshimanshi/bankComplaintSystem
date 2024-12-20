@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Complaint Registration - Banking Complaint Tracking</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f4f7fc;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+        margin: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 5px;
+      }
+
+      input,
+      textarea {
+        padding: 12px;
+        font-size: 16px;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        width: 100%;
+        transition: border-color 0.3s;
+      }
+
+      input:focus,
+      textarea:focus {
+        border-color: #5e9eeb;
+        outline: none;
+      }
+
+      button {
+        background-color: #5e9eeb;
+        color: white;
+        padding: 15px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #4a8ccf;
+      }
+
+      .footer {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 20px;
+        color: #777;
+      }
+
+      .footer a {
+        color: #5e9eeb;
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        text-decoration: underline;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 600px) {
+        .container {
+          padding: 20px;
+        }
+
+        h1 {
+          font-size: 20px;
+        }
+
+        input,
+        textarea,
+        button {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Success Message -->
+      <div
+        id="message"
+        style="
+          display: none;
+          color: green;
+          text-align: center;
+          margin-bottom: 15px;
+        "
+      >
+        Complaint submitted successfully!
+      </div>
+
+      <h1>Register a Complaint</h1>
+      <form action="/submit-complaint" method="POST">
+        <label for="name">Your Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          placeholder="Enter your full name"
+        />
+
+        <label for="email">Your Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="Enter your email address"
+        />
+
+        <label for="complaint">Complaint:</label>
+        <textarea
+          id="complaint"
+          name="complaint"
+          rows="4"
+          required
+          placeholder="Describe your complaint in detail"
+        ></textarea>
+
+        <button type="submit">Submit Complaint</button>
+      </form>
+      <div class="footer">
+        <p>&copy; 2024 Banking Complaint Tracking. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+      </div>
+    </div>
+
+    <script>
+      // Check the URL for a query parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("success") === "true") {
+        document.getElementById("message").style.display = "block";
+        // Remove the query parameter to avoid showing the message on refresh
+        history.replaceState(null, "", window.location.pathname);
+      }
+    </script>
+  </body>
+</html>
